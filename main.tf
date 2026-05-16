@@ -84,6 +84,26 @@ module "eks" {
     }
 
   }
+# Enable cluster creator admin permissions automatically
+  enable_cluster_creator_admin_permissions = true
+
+  # Explicitly add access entries for your team/users
+  access_entries = {
+    # Granting root access (or preferably, your specific IAM User/Role)
+    root_user = {
+      kubernetes_groups = []
+      principal_arn     = "arn:aws:iam::122610479920:root"
+
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+}
 }
 
 
