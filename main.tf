@@ -84,8 +84,6 @@ module "eks" {
     }
 
   }
-# Enable cluster creator admin permissions automatically
-  enable_cluster_creator_admin_permissions = true
 
   # Explicitly add access entries for your team/users
   access_entries = {
